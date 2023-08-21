@@ -1,0 +1,21 @@
+{
+    "name": "eykj/qyweixin",
+    "description": "一一科技企业微信组件",
+    "license": "MIT",
+    "keywords": [
+        "eykj",
+        "qyweixin"
+    ],
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Eykj\\Qyweixin\\": "src/"
+        },
+        "files": [
+        ]
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
