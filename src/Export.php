@@ -28,9 +28,9 @@ class Export
      * @author: 布尔
      * @name: 导出成员
      * @param array $param
-     * @return int
+     * @return array
      */
-    public function simple_user(array $param): int
+    public function simple_user(array $param): array
     {
         $r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', '') . '/cgi-bin/export/simple_user?access_token='. $this->Service->get_access_token($param), eyc_array_key($param, 'encoding_aeskey,block_size'));
         if ($r['errcode'] != 0) {

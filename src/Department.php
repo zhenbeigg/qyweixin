@@ -28,9 +28,9 @@ class Department
      * @author: 布尔
      * @name: 创建部门
      * @param array $param
-     * @return int
+     * @return array
      */
-    public function create(array $param): int
+    public function create(array $param): array
     {
         $r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', '') . '/cgi-bin/department/create?access_token='. $this->Service->get_access_token($param), eyc_array_key($param, 'name,name_en,parentid,order,order,id'));
         if ($r['errcode'] != 0) {

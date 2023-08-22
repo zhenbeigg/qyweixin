@@ -28,9 +28,9 @@ class Tag
      * @author: 布尔
      * @name: 创建标签
      * @param array $param
-     * @return int
+     * @return array
      */
-    public function create(array $param): int
+    public function create(array $param): array
     {
         $r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', '') . '/cgi-bin/tag/create?access_token='. $this->Service->get_access_token($param), eyc_array_key($param, 'tagname,tagid'));
         if ($r['errcode'] != 0) {

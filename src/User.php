@@ -28,9 +28,9 @@ class User
      * @author: 布尔
      * @name: 创建用户
      * @param array $param
-     * @return int
+     * @return array
      */
-    public function create(array $param): int
+    public function create(array $param): array
     {
         $r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', '') . '/cgi-bin/user/create?access_token='. $this->Service->get_access_token($param), eyc_array_key($param, 'userid,name,alias,mobile,department,order,position,gender,email,biz_mail,biz_mail,is_leader_in_dept,direct_leader,direct_leader,enable,extattr,to_invite,external_profile,external_position,nickname,address,main_department'));
         if ($r['errcode'] != 0) {

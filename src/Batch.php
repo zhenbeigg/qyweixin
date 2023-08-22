@@ -28,9 +28,9 @@ class Batch
      * @author: 布尔
      * @name: 增量更新成员
      * @param array $param
-     * @return int
+     * @return array
      */
-    public function syncuser(array $param): int
+    public function syncuser(array $param): array
     {
         $r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', '') . '/cgi-bin/batch/syncuser?access_token='. $this->Service->get_access_token($param), eyc_array_key($param, 'media_id,to_invite,callback'));
         if ($r['errcode'] != 0) {
