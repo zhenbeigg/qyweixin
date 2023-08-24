@@ -4,6 +4,7 @@ namespace Eykj\Qyweixin\callback;
 use Eykj\Qyweixin\callback\ErrorCode;
 use Eykj\Qyweixin\callback\Sha1;
 use Eykj\Qyweixin\callback\Prpcrypt;
+use Eykj\Qyweixin\callback\JsonParse;
 
 class WXBizMsgCrypt
 {
