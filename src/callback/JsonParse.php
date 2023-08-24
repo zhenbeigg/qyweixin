@@ -20,7 +20,7 @@ class JsonParse
 	{
 		try {
             if(is_array($jsontext)){
-                $encrypt = $jsontext['encrypt'];
+                $encrypt = $jsontext['Encrypt'];
             }else{
                 $encrypt = json_decode($jsontext, true)['Encrypt'];
             }
