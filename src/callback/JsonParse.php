@@ -19,7 +19,11 @@ class JsonParse
 	public function extract($jsontext)
 	{
 		try {
-			$encrypt = json_decode($jsontext, true)['Encrypt'];
+            if(is_array($jsontext)){
+                $encrypt = $jsontext['encrypt'];
+            }else{
+                $encrypt = json_decode($jsontext, true)['Encrypt'];
+            }
 			return array(0, $encrypt);
 		} catch (\Exception $e) {
 			print $e . "\n";
@@ -41,5 +45,3 @@ class JsonParse
 	}
 
 }
-
-?>
