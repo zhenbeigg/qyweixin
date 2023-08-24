@@ -1,5 +1,5 @@
 <?php
-
+namespace Eykj\Qyweixin\callback;
 /**
  * error code 说明.
  * <ul>
@@ -31,5 +31,3 @@ class ErrorCode
 	public static $DecodeBase64Error = -40010;
 	public static $GenReturnXmlError = -40011;
 }
-
-?>

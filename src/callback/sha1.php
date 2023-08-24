@@ -1,13 +1,14 @@
 <?php
+namespace Eykj\Qyweixin\callback;
 
-include_once "errorCode.php";
+use Eykj\Qyweixin\callback\ErrorCode;
 
 /**
  * SHA1 class
  *
  * 计算公众平台的消息签名接口.
  */
-class SHA1
+class Sha1
 {
 	/**
 	 * 用SHA1算法生成安全签名
@@ -24,7 +25,7 @@ class SHA1
 			sort($array, SORT_STRING);
 			$str = implode($array);
 			return array(ErrorCode::$OK, sha1($str));
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			print $e . "\n";
 			return array(ErrorCode::$ComputeSignatureError, null);
 		}
