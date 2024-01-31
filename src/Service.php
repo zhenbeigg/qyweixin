@@ -3,7 +3,7 @@
  * @author: 布尔
  * @name: 钉钉Service类
  * @desc: 介绍
- * @LastEditTime: 2024-01-30 16:56:43
+ * @LastEditTime: 2024-01-31 20:51:00
  */
 
 namespace Eykj\Qyweixin;
@@ -93,6 +93,22 @@ class Service
     public function get_auth_info(array $param): array
     {
         $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', 'https://qyapi.weixin.qq.com') . '/cgi-bin/service/get_auth_info?suite_access_token=' . $this->get_suite_token($param), eyc_array_key($param, 'auth_corpid,permanent_code'));
+        if ($r["errcode"] == 0) {
+            return $r;
+        } else {
+            error(500, $r['errmsg']);
+        }
+    }
+
+    /**
+     * @author: 布尔
+     * @name: code2Session 临时登录凭证校验接口
+     * @param array $param
+     * @return array
+     */
+    public function jscode2session(array $param): array
+    {
+        $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', 'https://qyapi.weixin.qq.com') . '/cgi-bin/service/miniprogram/jscode2session?suite_access_token=' . $this->get_suite_token($param) . '&js_code=' . $param['code'] . '&grant_type=authorization_code');
         if ($r["errcode"] == 0) {
             return $r;
         } else {
