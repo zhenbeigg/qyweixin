@@ -3,7 +3,7 @@
  * @author: 布尔
  * @name: 企业微信部门接口类
  * @desc: 介绍
- * @LastEditTime: 2023-08-21 17:33:04
+ * @LastEditTime: 2024-02-22 16:43:12
  */
 namespace Eykj\Qyweixin;
 
@@ -77,7 +77,7 @@ class Department
      */
     public function list(array $param) : array
     {
-        $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', '') . '/cgi-bin/department/list?access_token=' . $this->Service->get_access_token($param). $param['id'] ? '&id=' . $param['id'] : '');
+        $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', '') . '/cgi-bin/department/list?access_token=' . $this->Service->get_access_token($param). (isset($param['id']) ? '&id=' . $param['id'] : ''));
         if ($r['errcode'] != 0) {
             error(500, $r['errmsg']);
         }
