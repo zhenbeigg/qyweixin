@@ -3,7 +3,7 @@
  * @author: 布尔
  * @name: 企业微信部门接口类
  * @desc: 介绍
- * @LastEditTime: 2024-02-22 16:43:12
+ * @LastEditTime: 2024-02-22 17:39:22
  */
 namespace Eykj\Qyweixin;
 
@@ -92,7 +92,7 @@ class Department
      */
     public function simplelist(array $param) : array
     {
-        $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', '') . '/cgi-bin/department/simplelist?access_token=' . $this->Service->get_access_token($param). $param['id'] ? '&id=' . $param['id'] : '');
+        $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', '') . '/cgi-bin/department/simplelist?access_token=' . $this->Service->get_access_token($param). (isset($param['id']) ? '&id=' . $param['id'] : ''));
         if ($r['errcode'] != 0) {
             error(500, $r['errmsg']);
         }
