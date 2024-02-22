@@ -3,7 +3,7 @@
  * @author: 布尔
  * @name: 钉钉Service类
  * @desc: 介绍
- * @LastEditTime: 2024-01-31 20:51:00
+ * @LastEditTime: 2024-02-22 14:47:50
  */
 
 namespace Eykj\Qyweixin;
@@ -76,7 +76,7 @@ class Service
      */
     public function get_permanent_code(array $param): array
     {
-        $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', 'https://qyapi.weixin.qq.com') . '/cgi-bin/service/get_permanent_code?suite_access_token=' . $this->get_suite_token($param), eyc_array_key($param, 'auth_code|AuthCode,auth_code'));
+        $r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', 'https://qyapi.weixin.qq.com') . '/cgi-bin/service/get_permanent_code?suite_access_token=' . $this->get_suite_token($param), eyc_array_key($param, 'auth_code|AuthCode,auth_code'));
         if ($r["errcode"] == 0) {
             return $r;
         } else {
