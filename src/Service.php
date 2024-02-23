@@ -48,6 +48,17 @@ class Service
 
     /**
      * @author: 布尔
+     * @name: 服务商的token
+     * @param array $param
+     * @return string
+     */
+    public function get_provider_token(array $param): string
+    {
+        return $this->AuthInterface->get_provider_token('Qyweixin', $param);
+    }
+
+    /**
+     * @author: 布尔
      * @name: 获取预授权码
      * @param array $param
      * @return string
