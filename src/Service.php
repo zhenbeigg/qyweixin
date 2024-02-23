@@ -3,7 +3,7 @@
  * @author: 布尔
  * @name: 钉钉Service类
  * @desc: 介绍
- * @LastEditTime: 2024-02-22 14:47:50
+ * @LastEditTime: 2024-02-23 09:56:50
  */
 
 namespace Eykj\Qyweixin;
@@ -48,7 +48,7 @@ class Service
 
     /**
      * @author: 布尔
-     * @name: 服务商的token
+     * @name: 获取服务商的token
      * @param array $param
      * @return string
      */
