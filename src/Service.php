@@ -126,4 +126,36 @@ class Service
             error(500, $r['errmsg']);
         }
     }
+
+    /**
+     * @author: 布尔
+     * @name: 获取访问用户身份
+     * @param array $param
+     * @return array
+     */
+    public function getuserinfo3rd(array $param): array
+    {
+        $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', 'https://qyapi.weixin.qq.com') . '/service/auth/getuserinfo3rd?suite_access_token=' . $this->get_suite_token($param) . '&code=' . $param['code']);
+        if ($r["errcode"] == 0) {
+            return $r;
+        } else {
+            error(500, $r['errmsg']);
+        }
+    }
+
+    /**
+     * @author: 布尔
+     * @name: 获取访问用户敏感信息
+     * @param array $param
+     * @return array
+     */
+    public function getuserdetail3rd(array $param): array
+    {
+        $$r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', 'https://qyapi.weixin.qq.com') . '/service/auth/getuserdetail3rd?suite_access_token=' . $this->get_suite_token($param), eyc_array_key($param, 'user_ticket'));
+        if ($r["errcode"] == 0) {
+            return $r;
+        } else {
+            error(500, $r['errmsg']);
+        }
+    }
 }
