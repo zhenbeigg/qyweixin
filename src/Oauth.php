@@ -32,7 +32,7 @@ class Oauth
      */
     public function authorize(array $param): array
     {
-        $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', '') . '/connect/oauth2/authorize?appid=' . $param['appid'] . '&redirect_uri=' . urlencode($param['redirect_uri']) . '&response_type=code&scope=' . $param['scope'] .(isset($param['agentid'])?'&agentid=' . $param['agentid']:'') . '&state=' . $param['state'] . '#wechat_redirect');
+        $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', '') . '/connect/oauth2/authorize?appid=' . $param['appid'] . '&redirect_uri=' . urlencode($param['redirect_uri']) . '&response_type=code&scope=' . $param['scope'] . (isset($param['agentid']) ? '&agentid=' . $param['agentid'] : '') . (isset($param['state']) ? '&state=' . $param['state'] : '') . '#wechat_redirect');
         if ($r['errcode'] != 0) {
             error(500, $r['errmsg']);
         }
