@@ -3,7 +3,7 @@
  * @author: 布尔
  * @name: 钉钉Service类
  * @desc: 介绍
- * @LastEditTime: 2024-02-27 16:21:38
+ * @LastEditTime: 2024-02-27 16:30:09
  */
 
 namespace Eykj\Qyweixin;
@@ -168,7 +168,7 @@ class Service
     public function get_jsapi_ticket(array $param): string
     {
         if (!redis()->get($param['corpid'] . '_' . $param['corp_product'] . '_jsapi_ticket_token')) {
-            $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', 'https://qyapi.weixin.qq.com') . '/cgi-bin/get_jsapi_ticket?access_token=' . $this->get_access_token($param));
+            $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', 'https://qyapi.weixin.qq.com') . '/cgi-bin/get_jsapi_ticket?access_token=' . $this->get_access_token($param) . '&type=agent_config');
             if (isset($r['ticket']) && $r["errcode"] == 0) {
                 redis()->set($param['corpid'] . '_' . $param['corp_product'] . '_jsapi_ticket_token', $r["ticket"], $r['expires_in']);
                 return $r["ticket"];
