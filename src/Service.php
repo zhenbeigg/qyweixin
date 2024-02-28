@@ -135,7 +135,7 @@ class Service
      */
     public function getuserinfo3rd(array $param): array
     {
-        $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', 'https://qyapi.weixin.qq.com') . '/service/auth/getuserinfo3rd?suite_access_token=' . $this->get_suite_token($param) . '&code=' . $param['code']);
+        $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', 'https://qyapi.weixin.qq.com') . '/cgi-bin/service/auth/getuserinfo3rd?suite_access_token=' . $this->get_suite_token($param) . '&code=' . $param['code']);
         if ($r["errcode"] == 0) {
             return $r;
         } else {
@@ -151,7 +151,7 @@ class Service
      */
     public function getuserdetail3rd(array $param): array
     {
-        $$r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', 'https://qyapi.weixin.qq.com') . '/service/auth/getuserdetail3rd?suite_access_token=' . $this->get_suite_token($param), eyc_array_key($param, 'user_ticket'));
+        $$r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', 'https://qyapi.weixin.qq.com') . '/cgi-bin/service/auth/getuserdetail3rd?suite_access_token=' . $this->get_suite_token($param), eyc_array_key($param, 'user_ticket'));
         if ($r["errcode"] == 0) {
             return $r;
         } else {
