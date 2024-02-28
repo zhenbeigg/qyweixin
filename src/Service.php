@@ -3,7 +3,7 @@
  * @author: 布尔
  * @name: 钉钉Service类
  * @desc: 介绍
- * @LastEditTime: 2024-02-27 16:30:09
+ * @LastEditTime: 2024-02-28 16:54:47
  */
 
 namespace Eykj\Qyweixin;
@@ -151,7 +151,7 @@ class Service
      */
     public function getuserdetail3rd(array $param): array
     {
-        $$r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', 'https://qyapi.weixin.qq.com') . '/cgi-bin/service/auth/getuserdetail3rd?suite_access_token=' . $this->get_suite_token($param), eyc_array_key($param, 'user_ticket'));
+        $r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', 'https://qyapi.weixin.qq.com') . '/cgi-bin/service/auth/getuserdetail3rd?suite_access_token=' . $this->get_suite_token($param), eyc_array_key($param, 'user_ticket'));
         if ($r["errcode"] == 0) {
             return $r;
         } else {
