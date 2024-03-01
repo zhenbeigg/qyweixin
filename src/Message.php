@@ -43,6 +43,8 @@ class Message
         $param = eyc_array_insert($param, $auth_info, 'agentid');
         /* 设置消息类型 */
         $param['msgtype'] = $param['msgtype'] ?? 'text';
+        /* 标记id转译参数 */
+        $param['enable_id_trans'] = $param['enable_id_trans'] ?? 1;
         $r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', '') . '/cgi-bin/message/send?access_token=' . $this->Service->get_access_token($param), eyc_array_key($param, 'touser,toparty,totag,agentid,msgtype,selected_ticket_list,text,image,voice,video,file,textcard,news,mpnews,markdown,miniprogram_notice,template_card,template_msg,enable_id_trans,only_unauth,safe,enable_duplicate_check,duplicate_check_interval'));
         if ($r['errcode'] != 0) {
             error(500, $r['errmsg']);
@@ -64,6 +66,8 @@ class Message
         $param = eyc_array_insert($param, $auth_info, 'agentid');
         /* 设置消息类型 */
         $param['msgtype'] = $param['msgtype'] ?? 'text';
+        /* 标记id转译参数 */
+        $param['enable_id_trans'] = $param['enable_id_trans'] ?? 1;
         $r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', '') . '/cgi-bin/message/update_template_card?access_token=' . $this->Service->get_access_token($param), eyc_array_key($param, 'userids,partyids,tagids,atall,agentid,response_code,button'));
         if ($r['errcode'] != 0) {
             error(500, $r['errmsg']);
