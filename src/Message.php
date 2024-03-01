@@ -39,7 +39,7 @@ class Message
     {
         /* 查询授权信息 */
         $filter = eyc_array_key($param, 'corpid,types,corp_product');
-        $auth_info = $this->AuthInterface->get_info('Dtalk', $filter);
+        $auth_info = $this->AuthInterface->get_info('Qyweixin', $filter);
         $param = eyc_array_insert($param, $auth_info, 'agentid');
         $r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', '') . '/cgi-bin/message/send?access_token=' . $this->Service->get_access_token($param), eyc_array_key($param, 'touser,toparty,totag,agentid,msgtype,selected_ticket_list,text,image,voice,video,file,textcard,news,mpnews,markdown,miniprogram_notice,template_card,template_msg,enable_id_trans,only_unauth,safe,enable_duplicate_check,duplicate_check_interval'));
         if ($r['errcode'] != 0) {
@@ -58,7 +58,7 @@ class Message
     {
         /* 查询授权信息 */
         $filter = eyc_array_key($param, 'corpid,types,corp_product');
-        $auth_info = $this->AuthInterface->get_info('Dtalk', $filter);
+        $auth_info = $this->AuthInterface->get_info('Qyweixin', $filter);
         $param = eyc_array_insert($param, $auth_info, 'agentid');
         $r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', '') . '/cgi-bin/message/update_template_card?access_token=' . $this->Service->get_access_token($param), eyc_array_key($param, 'userids,partyids,tagids,atall,agentid,response_code,button'));
         if ($r['errcode'] != 0) {
