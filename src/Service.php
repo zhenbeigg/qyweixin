@@ -3,7 +3,7 @@
  * @author: 布尔
  * @name: 钉钉Service类
  * @desc: 介绍
- * @LastEditTime: 2024-02-28 16:54:47
+ * @LastEditTime: 2024-03-11 13:09:15
  */
 
 namespace Eykj\Qyweixin;
@@ -161,14 +161,14 @@ class Service
 
     /**
      * @author: 布尔
-     * @name: jsapi授权
+     * @name: 获取企业 jsapi_ticket
      * @param array $param
      * @return string
      */
     public function get_jsapi_ticket(array $param): string
     {
         if (!redis()->get($param['corpid'] . '_' . $param['corp_product'] . '_jsapi_ticket_token')) {
-            $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', 'https://qyapi.weixin.qq.com') . '/cgi-bin/ticket/get?access_token=' . $this->get_access_token($param) . '&type=agent_config');
+            $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', 'https://qyapi.weixin.qq.com') . '/cgi-bin/get_jsapi_ticket?access_token=' . $this->get_access_token($param) . '&type=agent_config');
             if (isset($r['ticket']) && $r["errcode"] == 0) {
                 redis()->set($param['corpid'] . '_' . $param['corp_product'] . '_jsapi_ticket_token', $r["ticket"], $r['expires_in']);
                 return $r["ticket"];
@@ -177,5 +177,25 @@ class Service
             }
         }
         return redis()->get($param['corpid'] . '_' . $param['corp_product'] . '_jsapi_ticket_token');
+    }
+
+    /**
+     * @author: 布尔
+     * @name: 获取应用 jsapi_ticket
+     * @param array $param
+     * @return string
+     */
+    public function get_agent_jsapi_ticket(array $param): string
+    {
+        if (!redis()->get($param['corpid'] . '_' . $param['corp_product'] . '_agent_jsapi_ticket_token')) {
+            $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', 'https://qyapi.weixin.qq.com') . '/cgi-bin/ticket/get?access_token=' . $this->get_access_token($param) . '&type=agent_config');
+            if (isset($r['ticket']) && $r["errcode"] == 0) {
+                redis()->set($param['corpid'] . '_' . $param['corp_product'] . '_agent_jsapi_ticket_token', $r["ticket"], $r['expires_in']);
+                return $r["ticket"];
+            } else {
+                error(500, $r['errmsg']);
+            }
+        }
+        return redis()->get($param['corpid'] . '_' . $param['corp_product'] . '_agent_jsapi_ticket_token');
     }
 }
