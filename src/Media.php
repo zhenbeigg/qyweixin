@@ -3,7 +3,7 @@
  * @author: 布尔
  * @name: 素材管理
  * @desc: 介绍
- * @LastEditTime: 2024-03-15 14:21:27
+ * @LastEditTime: 2024-03-15 14:22:39
  */
 
 namespace Eykj\Qyweixin;
@@ -92,7 +92,7 @@ class Media
      */
     public function get_jssdk(array $param): array
     {
-        $r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', '') . '/cgi-bin/media/get/jssdk?access_token=' . $this->Service->get_access_token($param) . '&media_id=' . $param['media_id']);
+        $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', '') . '/cgi-bin/media/get/jssdk?access_token=' . $this->Service->get_access_token($param) . '&media_id=' . $param['media_id']);
         if ($r['errcode'] != 0) {
             error(500, $r['errmsg']);
         }
