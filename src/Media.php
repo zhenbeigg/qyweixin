@@ -3,7 +3,7 @@
  * @author: 布尔
  * @name: 素材管理
  * @desc: 介绍
- * @LastEditTime: 2024-03-15 14:22:39
+ * @LastEditTime: 2024-03-15 15:56:13
  */
 
 namespace Eykj\Qyweixin;
@@ -140,7 +140,7 @@ class Media
         $media['name'] = 'media';
         $media['contents'] = fopen($param['file'], 'r+');
         $data[] = $media;
-        $r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', '') . '/cgi-bin/service/media/upload?provider_access_token=' . $this->Service->get_access_token($param) . '&type=' . $param['type'] . (isset($param['attachment_type']) ? '&attachment_type=' . $param['attachment_type'] : ''), $data, en_type: 'file');
+        $r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', '') . '/cgi-bin/service/media/upload?provider_access_token=' . $this->Service->get_provider_token($param) . '&type=' . $param['type'] . (isset($param['attachment_type']) ? '&attachment_type=' . $param['attachment_type'] : ''), $data, en_type: 'file');
         /* 关闭资源 */
         if (is_resource($media['contents'])) {
             fclose($media['contents']);
