@@ -3,8 +3,9 @@
  * @author: 布尔
  * @name: 异步导入接口
  * @desc: 介绍
- * @LastEditTime: 2023-08-21 16:45:44
+ * @LastEditTime: 2024-04-07 11:20:11
  */
+
 namespace Eykj\Qyweixin;
 
 use Eykj\Base\GuzzleHttp;
@@ -18,7 +19,7 @@ class Batch
     protected ?Service $Service;
 
     // 通过设置参数为 nullable，表明该参数为一个可选参数
-    public function __construct(?GuzzleHttp $GuzzleHttp,?Service $Service)
+    public function __construct(?GuzzleHttp $GuzzleHttp, ?Service $Service)
     {
         $this->GuzzleHttp = $GuzzleHttp;
         $this->Service = $Service;
@@ -32,7 +33,7 @@ class Batch
      */
     public function syncuser(array $param): array
     {
-        $r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', '') . '/cgi-bin/batch/syncuser?access_token='. $this->Service->get_access_token($param), eyc_array_key($param, 'media_id,to_invite,callback'));
+        $r = $this->GuzzleHttp->post(env('QYWEIXIN_URL', '') . '/cgi-bin/batch/syncuser?access_token=' . $this->Service->get_access_token($param), eyc_array_key($param, 'media_id,to_invite,callback'));
         if ($r['errcode'] != 0) {
             error(500, $r['errmsg']);
         }

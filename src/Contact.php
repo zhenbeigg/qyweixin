@@ -39,4 +39,19 @@ class Contact
         }
         return $r;
     }
+
+    /**
+     * @author: 布尔
+     * @name: 获取异步任务结果
+     * @param array $param
+     * @return array
+     */
+    public function getresult(array $param): array
+    {
+        $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', '') . '/cgi-bin/service/batch/getresult?provider_access_token=' . $this->Service->get_access_token($param) . '&jobid=' . $param['jobid']);
+        if ($r['errcode'] != 0) {
+            error(500, $r['errmsg']);
+        }
+        return $r;
+    }
 }
