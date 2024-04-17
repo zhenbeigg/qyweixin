@@ -3,7 +3,7 @@
  * @author: 布尔
  * @name: 企业微信用通讯录
  * @desc: 介绍
- * @LastEditTime: 2024-03-15 20:28:44
+ * @LastEditTime: 2024-04-17 17:56:21
  */
 
 namespace Eykj\Qyweixin;
@@ -48,7 +48,7 @@ class Contact
      */
     public function getresult(array $param): array
     {
-        $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', '') . '/cgi-bin/service/batch/getresult?provider_access_token=' . $this->Service->get_access_token($param) . '&jobid=' . $param['jobid']);
+        $r = $this->GuzzleHttp->get(env('QYWEIXIN_URL', '') . '/cgi-bin/service/batch/getresult?provider_access_token=' . $this->Service->get_provider_token($param) . '&jobid=' . $param['jobid']);
         if ($r['errcode'] != 0) {
             error(500, $r['errmsg']);
         }
